@@ -1,109 +1,79 @@
-// richiamo number list
-const numberListItems = document.getElementById('numbers-list');
-// salvo i numeri generati in una variabile 
-let number1 = randomNumbers();
-let number2 = randomNumbers();
-let number3 = randomNumbers();
-let number4 = randomNumbers();
-let number5 = randomNumbers();
-// lista numeri random
-numberListItems.innerHTML = `
+// richiamo countdown
+const countdownElement = document.getElementById('countdown');
+//  richiamo number list
+const numbersListElement = document.getElementById('numbers-list');
+// richiamo form user
+const answersFormElement = document.getElementById('answers-form');
+// richiamo instructions
+const istructionsElement = document.getElementById('instructions');
+// richiamo message
+const messageElement = document.getElementById('message');
+
+
+
+
+// timer
+let count = 30;
+let timer = setInterval(start, 1000);
+
+// numeri randomici //
+let number1 = randomNumber()
+let number2 = randomNumber()
+let number3 = randomNumber()
+let number4 = randomNumber()
+let number5 = randomNumber()
+// lista numeri randomici
+numbersListElement.innerHTML = `
 <li>${number1}</li>
 <li>${number2}</li>
 <li>${number3}</li>
 <li>${number4}</li>
 <li>${number5}</li>`;
-// lista salvata in un array
-console.log(numberListItems)
-let numList = [
-    `${number1}`,
-    `${number2}`,
-    `${number3}`,
-    `${number4}`,
-    `${number5}`
-]
-console.log(numList)
-// richiama il form
-const answersFormElement = document.getElementById('answers-form');
-//  richiamo il countdown
-const countDownElement = document.getElementById('countdown');
+console.log(numbersListElement)
+// controllo numeri 
+answersFormElement.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const formControlElement = document.querySelectorAll('.form-control');
+    console.log(formControlElement);
 
-const messageElement = document.getElementById('message')
-// timer
-let count = 10;
-let timer = setInterval(startTimer, 1000);
+    let solved = 0;
 
-
-
-
-
-
-
-
-/*
-// creare una lista
-const list = [
-    'taro@gmail.com',
-    'asia@gmail.com',
-    'ron@gmail.com',
-    'lillo@gmail.com',
-    'martino@gmail.com',
-    'gastone@gmail.com',
-    'lucy@gmail.com',
-    'jimmi@gmail.com'
-]
-// chiedere all'utente la sua mail
-const emailUsers = prompt('Please enter your email');
-// variabile di controllo
-let isEmailPresent = false ;
-// creare un ciclo che controlli tutte le email della lista e le confronta con l'email che scrive lutente
-for (i = 0; i < list.length; i++){
-    const currentEmail = list[i];
-
-    if(currentEmail === emailUsers){
-        isEmailPresent = true ;
-        break; // interrompere il ciclo appena una email 
+    for (let i = 0; i < formControlElement.length; i++) {
+        let control = formControlElement[i].value;
+        control = parseInt(control);
+        if (control === number1 || control === number2 || control === number3 || control === number4 || control === number5){
+             solved++
+        };
     }
-}
-// stampa il risultato
-if (isEmailPresent){
-    console.log("the email ", emailUsers ," is present, you can enter");
-}else{
-    console.log("the email ", emailUsers," is not present, it cannot enter");
-}
-*/
 
+    
+        if (solved === 0) {
+            messageElement.innerHTML = `Mi spiace non hai indovinato nessun numero`
+        } else if (solved === 1) {
+            messageElement.innerHTML = `complimenti hai indovinato ${solved} numero`
+            messageElement.className = 'text-success text-center'
+        } else if (solved > 1) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            messageElement.innerHTML = `complimenti hai indovinato ${solved} numeri`
+            messageElement.className = 'text-success text-center'
+        }
+    })
 
 
 // FUNZIONI //
-// generare numeri 
-function randomNumbers(){
-    return Math.floor(Math.random() * 50 ) + 1;
-};
 
+// genera numeri random
+function randomNumber() {
+    return Math.floor(Math.random() * 50) + 1;
+}
 
-// taimer
-function startTimer(){
-    countDownElement.innerHTML = count;
-    count --;
-    if(count === -1){
-        numberListItems.className = 'd-none';
-        answersFormElement.className = 'd-block';
-        clearInterval(timer);
-    };
-};
+// timer
+function start() {
+    countdownElement.innerHTML = count
+    count--
+    if (count === -1) {
+        numbersListElement.className = 'd-none'
+        answersFormElement.className = 'd-block'
+        clearInterval(timer)
+    }
+}
