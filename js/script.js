@@ -12,14 +12,14 @@ numberListItems.innerHTML = `
 <li>${number2}</li>
 <li>${number3}</li>
 <li>${number4}</li>
-<li>${number5}</li>`
+<li>${number5}</li>`;
 
 //  richiamo il countdown
-const countdownElement = document.getElementById('countdown')
-const answersFormElement = document.getElementById('answers-form')
+const countDownElement = document.getElementById('countdown');
+const answersFormElement = document.getElementById('answers-form');
 // timer
-let count = 10
-let timer = setInterval(startTimer, 1000)
+let count = 10;
+let timer = setInterval(startTimer, 1000);
 
 
 
@@ -50,16 +50,17 @@ let timer = setInterval(startTimer, 1000)
 // generare numeri 
 function randomNumbers(){
     return Math.floor(Math.random() * 50 ) + 1;
-}
+};
 
 
-// taimer per far sparire i numeri 
+// taimer
+
 function startTimer(){
-    countdownElement.innerHTML = count
-    count --
-    if(count === 0){
-        countdownElement.className = 'd-none'
-        numberListItems.className = 'd-none'
-        answersFormElement.className = 'd-block'
-    }
-}
+    countDownElement.innerHTML = count;
+    count --;
+    if(count === -1){
+        numberListItems.className = 'd-none';
+        answersFormElement.className = 'd-block';
+        clearInterval(timer);
+    };
+};
