@@ -13,10 +13,22 @@ numberListItems.innerHTML = `
 <li>${number3}</li>
 <li>${number4}</li>
 <li>${number5}</li>`;
-
+// lista salvata in un array
+console.log(numberListItems)
+let numList = [
+    `${number1}`,
+    `${number2}`,
+    `${number3}`,
+    `${number4}`,
+    `${number5}`
+]
+console.log(numList)
+// richiama il form
+const answersFormElement = document.getElementById('answers-form');
 //  richiamo il countdown
 const countDownElement = document.getElementById('countdown');
-const answersFormElement = document.getElementById('answers-form');
+
+const messageElement = document.getElementById('message')
 // timer
 let count = 10;
 let timer = setInterval(startTimer, 1000);
@@ -28,6 +40,38 @@ let timer = setInterval(startTimer, 1000);
 
 
 
+/*
+// creare una lista
+const list = [
+    'taro@gmail.com',
+    'asia@gmail.com',
+    'ron@gmail.com',
+    'lillo@gmail.com',
+    'martino@gmail.com',
+    'gastone@gmail.com',
+    'lucy@gmail.com',
+    'jimmi@gmail.com'
+]
+// chiedere all'utente la sua mail
+const emailUsers = prompt('Please enter your email');
+// variabile di controllo
+let isEmailPresent = false ;
+// creare un ciclo che controlli tutte le email della lista e le confronta con l'email che scrive lutente
+for (i = 0; i < list.length; i++){
+    const currentEmail = list[i];
+
+    if(currentEmail === emailUsers){
+        isEmailPresent = true ;
+        break; // interrompere il ciclo appena una email 
+    }
+}
+// stampa il risultato
+if (isEmailPresent){
+    console.log("the email ", emailUsers ," is present, you can enter");
+}else{
+    console.log("the email ", emailUsers," is not present, it cannot enter");
+}
+*/
 
 
 
@@ -54,7 +98,6 @@ function randomNumbers(){
 
 
 // taimer
-
 function startTimer(){
     countDownElement.innerHTML = count;
     count --;
