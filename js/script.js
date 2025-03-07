@@ -9,9 +9,6 @@ const istructionsElement = document.getElementById('instructions');
 // richiamo message
 const messageElement = document.getElementById('message');
 
-
-
-
 // timer
 let count = 30;
 let timer = setInterval(start, 1000);
@@ -30,7 +27,26 @@ numbersListElement.innerHTML = `
 <li>${number4}</li>
 <li>${number5}</li>`;
 console.log(numbersListElement)
-// controllo numeri 
+ 
+
+// FUNZIONI //
+// genera numeri random
+function randomNumber() {
+    return Math.floor(Math.random() * 50) + 1;
+}
+
+// timer
+function start() {
+    countdownElement.innerHTML = count
+    count--
+    if (count === -1) {
+        numbersListElement.className = 'd-none';
+        answersFormElement.className = 'd-block';
+        istructionsElement.innerText = 'Inserisci i numeri e premi conferma';
+        clearInterval(timer)
+    }
+}
+// controllo numeri
 answersFormElement.addEventListener('submit', function (event) {
     event.preventDefault();
     const formControlElement = document.querySelectorAll('.form-control');
@@ -58,22 +74,3 @@ answersFormElement.addEventListener('submit', function (event) {
             messageElement.className = 'text-success text-center'
         }
     })
-
-
-// FUNZIONI //
-
-// genera numeri random
-function randomNumber() {
-    return Math.floor(Math.random() * 50) + 1;
-}
-
-// timer
-function start() {
-    countdownElement.innerHTML = count
-    count--
-    if (count === -1) {
-        numbersListElement.className = 'd-none'
-        answersFormElement.className = 'd-block'
-        clearInterval(timer)
-    }
-}
